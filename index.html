@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ceeble | Valorisation CEE optimisée et sécurisée</title>
+<meta name="description" content="Ceeble transforme vos CEE en levier de croissance : cadrage, conformité et accompagnement opérationnel."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#fff7ea;--bg-alt:#ffffff;--card:#fffefb;
+  --text:#2f291f;--muted:#5b5243;
+  --accent:#ff7a1a;--accent-2:#ffb347;--accent-dark:#d45f00;
+  --ok:#22c55e;--line:#ead8b2;
+  --r:12px;--rl:18px;--rx:26px;--max:1160px;
+  --sm:0 4px 14px rgba(92,72,31,.08);
+  --md:0 10px 32px rgba(92,72,31,.12);
+  --lg:0 22px 60px rgba(92,72,31,.16);
+  --tr:.25s cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);line-height:1.65;background:
+radial-gradient(1000px 600px at 10% 5%,rgba(255,122,26,.17),transparent 55%),
+radial-gradient(900px 520px at 92% 10%,rgba(255,179,71,.14),transparent 58%),
+linear-gradient(180deg,#fff1db 0%,#fff7eb 48%,#fffef9 100%);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:0 auto;padding:0 30px}
+@media(max-width:640px){.container{padding:0 16px}}
+
+.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(10px);opacity:.5;animation:float 14s ease-in-out infinite}
+.orb.o1{width:280px;height:280px;background:rgba(255,122,26,.22);top:8%;left:-80px}
+.orb.o2{width:220px;height:220px;background:rgba(255,179,71,.2);top:62%;right:-70px;animation-delay:-5s}
+.orb.o3{width:180px;height:180px;background:rgba(34,197,94,.16);bottom:8%;left:25%;animation-delay:-9s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:999;width:0}
+
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(255,249,238,.78);backdrop-filter:blur(12px);border-bottom:1px solid rgba(47,41,31,.1);transition:all var(--tr)}
+.nav-wrap.scrolled{box-shadow:var(--sm);background:rgba(255,252,245,.94)}
+.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}
+.brand-badge{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 20px rgba(255,122,26,.32)}
+.nav-shell{display:flex;align-items:center;gap:12px;margin-left:auto}
+.navlinks{display:flex;gap:8px}
+.navlinks a{padding:10px 13px;border-radius:999px;font-weight:700;color:rgba(47,41,31,.86);transition:all var(--tr)}
+.navlinks a:hover{background:#fff;color:var(--accent-dark);box-shadow:inset 0 0 0 1px rgba(255,122,26,.18)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:12px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:all var(--tr)}
+.btn-primary{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--accent),#ff8f36);color:#fff;box-shadow:0 10px 24px rgba(255,122,26,.34)}
+.btn-primary::after{content:'';position:absolute;inset:-120% auto -120% -30%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);transform:skewX(-24deg);animation:shine 3s linear infinite}
+.btn-primary:hover{transform:translateY(-2px)}
+@keyframes shine{to{left:130%}}
+.btn-outline{border-color:rgba(47,41,31,.45);background:transparent}
+.nav-burger{display:none;border:1px solid rgba(47,41,31,.2);background:#fff;border-radius:999px;padding:10px 13px}
+.mnav{display:none;flex-direction:column;gap:8px;padding:0 0 14px}
+.mnav a{background:#fff;border:1px solid var(--line);padding:11px 12px;border-radius:12px;font-weight:700}
+
+.hero{padding:68px 0 86px;position:relative}
+.hero-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.3);color:var(--accent-dark);font-size:12px;padding:6px 12px;border-radius:999px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.eyebrow i{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(255,122,26,.4);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,122,26,0)}100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.06;margin:16px 0 20px;letter-spacing:-1px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent-dark),var(--accent));-webkit-background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--muted);max-width:57ch}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.hero-badges li{padding:6px 12px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--sm)}
+.hero-badges li::before{content:'✓ ';color:var(--ok);font-weight:800}
+.hero-visual{min-height:420px;border-radius:var(--rx);background:linear-gradient(165deg,#fff5e4,#fff,#fff0dd);border:1px solid var(--line);box-shadow:var(--lg);position:relative;overflow:hidden}
+.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;mix-blend-mode:multiply}
+.visual-center{position:absolute;inset:auto 32px 30px 32px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--md);animation:cardFloat 6s ease-in-out infinite}
+@keyframes cardFloat{50%{transform:translateY(-8px)}}
+.hero-stats{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sm)}
+.stat-item{padding:18px;text-align:center;border-right:1px solid var(--line)}
+.stat-item:last-child{border-right:none}
+.stat-value{font-size:26px;font-weight:900;color:var(--accent-dark)}
+.stat-label{font-size:12px;text-transform:uppercase;color:var(--muted);letter-spacing:.6px}
+
+.section{padding:88px 0}
+.section.alt{background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,248,236,.46))}
+.section-head{max-width:760px;margin-bottom:36px}
+.section-label{font-size:12px;font-weight:800;color:var(--accent-dark);text-transform:uppercase;letter-spacing:1.2px}
+.section h2{font-size:clamp(28px,3vw,40px);line-height:1.15;margin:10px 0 12px}
+.section-intro{font-size:17px;color:var(--muted)}
+
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:var(--rl);padding:24px;box-shadow:var(--sm);transition:all var(--tr)}
+.step:hover{transform:translateY(-5px);box-shadow:var(--md);border-color:rgba(255,122,26,.4)}
+.step-num{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,122,26,.14);color:var(--accent-dark);font-weight:900;margin-bottom:14px}
+
+.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.value-cards{display:grid;gap:12px}
+.value{display:flex;gap:14px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sm)}
+.value i{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(255,122,26,.13)}
+
+.timeline{list-style:none;display:grid;gap:14px}
+.timeline li{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--sm)}
+.dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:900}
+
+.audience{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.aud{padding:24px;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:var(--sm);transition:all var(--tr)}
+.aud:hover{transform:translateY(-6px)}
+.aud .icon{font-size:30px;margin-bottom:8px}
+
+.carousel{margin-top:20px;border:1px dashed rgba(255,122,26,.35);border-radius:14px;padding:10px;background:#fff;overflow:hidden}
+.track{display:flex;gap:24px;white-space:nowrap;animation:marquee 18s linear infinite;font-weight:700;color:rgba(47,41,31,.7)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:700}
+.faq p{padding:0 0 16px;color:var(--muted)}
+
+.contact{background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,247,230,.7))}
+.contact-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:36px}
+.benefit{display:flex;gap:12px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;margin-top:10px}
+form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--md)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:6px}
+label{font-size:12px;font-weight:700;color:rgba(47,41,31,.8)}
+input,select,textarea{font:inherit;padding:12px;border-radius:12px;border:1px solid rgba(47,41,31,.2)}
+textarea{min-height:120px;resize:vertical}
+.full{grid-column:1/-1}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.footer{padding:56px 0 32px;background:linear-gradient(180deg,#fff8eb,#fdf1dd);border-top:1px solid rgba(47,41,31,.1)}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px;padding-bottom:24px;border-bottom:1px solid rgba(47,41,31,.1)}
+.footer a{display:block;margin-bottom:8px;color:rgba(47,41,31,.82)}
+.footer-bottom{padding-top:18px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(47,41,31,.6)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .navlinks{display:none}.nav-burger{display:inline-flex}.mnav{display:flex}
+  .hero-layout,.two-cols,.contact-layout{grid-template-columns:1fr}
+  .hero-visual{min-height:330px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .steps-grid,.audience,.form-grid,.hero-stats{grid-template-columns:1fr}
+  .stat-item{border-right:none;border-bottom:1px solid var(--line)}
+  .stat-item:last-child{border-bottom:none}
+  .hero-actions .btn{width:100%}
+  .footer-grid{grid-template-columns:1fr}
+  input,select,textarea{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="progress" id="prog"></div>
+
+<header class="nav-wrap" id="nav-wrap">
+  <div class="container">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="#top"><span class="brand-badge"></span> CEEBLE</a>
+      <div class="nav-shell">
+        <div class="navlinks">
+          <a href="#approche">Notre approche</a>
+          <a href="#process">Process</a>
+          <a href="#clients">Pour qui</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="btn btn-outline" href="#">Espace partenaire</a>
+        <a class="btn btn-primary" href="#contact">Réserver un échange</a>
+        <button class="nav-burger" type="button" id="burger" aria-controls="mnav" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+    <div class="mnav" id="mnav" hidden>
+      <a href="#approche">Notre approche</a><a href="#process">Process</a><a href="#clients">Pour qui</a><a href="#faq">FAQ</a><a href="#contact">Réserver un échange</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="reveal">
+          <span class="eyebrow"><i></i>Valorisation CEE nouvelle génération</span>
+          <h1>Avec Ceeble, les CEE deviennent un <em>accélérateur business</em>, pas une contrainte.</h1>
+          <p class="lead">On sécurise votre conformité, on fluidifie vos opérations et on maximise la valeur de chaque dossier. Résultat : plus de marge, plus de sérénité, plus de vitesse.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Être rappelé sous 24h</a>
+            <a class="btn btn-outline" href="#process">Voir le parcours complet</a>
+          </div>
+          <ul class="hero-badges"><li>Dossiers pré-audités</li><li>Interlocuteur unique</li><li>Pilotage en continu</li><li>Accompagnement terrain</li></ul>
+        </div>
+        <div class="hero-visual reveal" style="transition-delay:.1s">
+          <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1200&auto=format&fit=crop" alt="Maison rénovée énergétiquement"/>
+          <div class="visual-center">
+            <strong style="font-size:14px;display:block;margin-bottom:6px">CEE Secure Score</strong>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <span style="font-size:31px;font-weight:900;color:var(--accent-dark)"><span class="counter" data-t="98">0</span>%</span>
+              <small style="color:var(--muted)">Conformité observée
+                <br/>sur les dossiers accompagnés</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats reveal" style="transition-delay:.2s">
+        <div class="stat-item"><div class="stat-value"><span class="counter" data-t="500">0</span>+</div><div class="stat-label">Dossiers traités</div></div>
+        <div class="stat-item"><div class="stat-value">24h</div><div class="stat-label">Délai de réponse</div></div>
+        <div class="stat-item"><div class="stat-value"><span class="counter" data-t="3">0</span></div><div class="stat-label">Étapes clés</div></div>
+        <div class="stat-item"><div class="stat-value"><span class="counter" data-t="12">0</span> M€</div><div class="stat-label">Volumes accompagnés</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="approche">
+    <div class="container">
+      <header class="section-head reveal"><span class="section-label">Notre approche</span><h2>Un parcours en 3 temps pour fiabiliser vos dossiers CEE</h2><p class="section-intro">Nous avons redesigné l’expérience pour qu’elle soit lisible, crédible et convaincante, en s’inspirant des meilleurs standards conversion du secteur énergie.</p></header>
+      <div class="steps-grid">
+        <article class="step reveal"><div class="step-num">1</div><h3>Qualification express</h3><p>On valide votre périmètre en 20 minutes : typologies, volumes, contraintes, planning.</p></article>
+        <article class="step reveal" style="transition-delay:.1s"><div class="step-num">2</div><h3>Structuration conformité</h3><p>Checklists, collecte documentaire, contrôle de cohérence et plan anti-retour.</p></article>
+        <article class="step reveal" style="transition-delay:.2s"><div class="step-num">3</div><h3>Pilotage & optimisation</h3><p>Arbitrage continu sur la valorisation selon vos objectifs de marge et de délai.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="process">
+    <div class="container two-cols">
+      <div class="reveal">
+        <span class="section-label">Processus</span>
+        <h2>Comment ça marche, concrètement ?</h2>
+        <ol class="timeline" style="margin-top:18px">
+          <li><span class="dot">1</span><div><strong>Kick-off stratégique</strong><p>On aligne vos enjeux commerciaux, opérationnels et réglementaires.</p></div></li>
+          <li><span class="dot">2</span><div><strong>Collecte guidée</strong><p>Vos équipes savent exactement quoi produire, quand et comment.</p></div></li>
+          <li><span class="dot">3</span><div><strong>Pré-audit Ceeble</strong><p>Contrôle complet avant envoi pour limiter les rejets et litiges.</p></div></li>
+          <li><span class="dot">4</span><div><strong>Suivi transparent</strong><p>Points d’étape réguliers et vision claire sur les dossiers en cours.</p></div></li>
+        </ol>
+      </div>
+      <div class="value-cards reveal" style="transition-delay:.1s">
+        <article class="value"><i>⚡</i><div><h3>Simplicité opérationnelle</h3><p>Un parcours clair, des actions concrètes, un vrai gain de temps.</p></div></article>
+        <article class="value"><i>🔒</i><div><h3>Risque réduit</h3><p>Documentation robuste et vérifications avancées sur chaque dossier.</p></div></article>
+        <article class="value"><i>📈</i><div><h3>Impact business</h3><p>Des CEE mieux valorisés qui soutiennent votre développement commercial.</p></div></article>
+        <div class="carousel"><div class="track">Installateurs RGE • Délégataires • Obligés • Bureaux d’études • AMO • Installateurs RGE • Délégataires • Obligés • Bureaux d’études • AMO •</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="clients">
+    <div class="container">
+      <header class="section-head reveal"><span class="section-label">Nos clients</span><h2>Pour qui est conçu Ceeble ?</h2></header>
+      <div class="audience">
+        <article class="aud reveal"><div class="icon">🔧</div><h3>Installateurs RGE</h3><p>Vous vendez mieux avec un argumentaire prime clair et crédible pour vos clients.</p></article>
+        <article class="aud reveal" style="transition-delay:.1s"><div class="icon">🏢</div><h3>Obligés / Délégataires</h3><p>Vous industrialisez un flux sécurisé de dossiers avec une qualité homogène.</p></article>
+        <article class="aud reveal" style="transition-delay:.2s"><div class="icon">📐</div><h3>Bureaux d’études / AMO</h3><p>Vous fiabilisez vos livrables et réduisez les risques de contestation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="faq">
+    <div class="container">
+      <header class="section-head reveal"><span class="section-label">FAQ</span><h2>Questions fréquentes</h2></header>
+      <div class="faq reveal">
+        <details><summary>Ceeble gère-t-il les opérations résidentielles et tertiaires ?</summary><p>Oui, sur un large panel de fiches standardisées, avec cadrage préalable pour éviter les mauvaises surprises.</p></details>
+        <details><summary>En combien de temps démarre l’accompagnement ?</summary><p>Après qualification, un plan d’action peut démarrer sous 48h avec une équipe dédiée.</p></details>
+        <details><summary>Pouvez-vous former nos équipes en interne ?</summary><p>Oui, nous proposons des sessions opérationnelles courtes orientées résultats terrain.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="container contact-layout">
+      <aside class="reveal">
+        <span class="section-label">Contact</span>
+        <h2>Parlons de vos dossiers CEE</h2>
+        <p class="section-intro">Laissez vos coordonnées : on vous rappelle sous 24h pour cadrer votre besoin et proposer une trajectoire claire.</p>
+        <div class="benefit"><span>⚡</span><div><strong>Réponse rapide</strong><p>Un expert vous répond sous 24h.</p></div></div>
+        <div class="benefit"><span>🔒</span><div><strong>Confidentialité</strong><p>Vos données sont traitées avec confidentialité stricte.</p></div></div>
+        <div class="benefit"><span>🎯</span><div><strong>Sans engagement</strong><p>Premier échange utile, concret et gratuit.</p></div></div>
+      </aside>
+      <form class="reveal" style="transition-delay:.1s">
+        <div class="form-grid">
+          <div class="field"><label>Nom *</label><input type="text" placeholder="Dupont"/></div>
+          <div class="field"><label>Société *</label><input type="text" placeholder="Votre société"/></div>
+          <div class="field"><label>Email *</label><input type="email" placeholder="prenom@societe.fr"/></div>
+          <div class="field"><label>Téléphone *</label><input type="tel" placeholder="06 12 34 56 78"/></div>
+          <div class="field full"><label>Profil *</label><select><option>Installateur RGE</option><option>Obligé / Délégataire</option><option>Bureau d'études / AMO</option></select></div>
+          <div class="field full"><label>Votre besoin</label><textarea placeholder="Volume, typologies de travaux, zones, contraintes, objectifs..."></textarea></div>
+        </div>
+        <button class="btn btn-primary" type="button" style="margin-top:10px;width:100%">Être recontacté sous 24h</button>
+        <p class="note">✓ Sans engagement • ✓ 100% confidentiel • ✓ Accompagnement sur-mesure</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong style="font-size:20px">Ceeble</strong><p style="margin-top:8px;color:var(--muted)">Valorisation CEE optimisée pour les acteurs terrain : conformité, rapidité, performance.</p></div>
+      <div><h4 style="margin-bottom:10px">Services</h4><a href="#process">Comment ça marche</a><a href="#clients">Nos clients</a><a href="#contact">Prendre rendez-vous</a></div>
+      <div><h4 style="margin-bottom:10px">Contact</h4><a href="mailto:contact@ceeble.fr">contact@ceeble.fr</a><a href="tel:+33762760029">07 62 76 00 29</a><a href="#faq">FAQ</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Ceeble — Tous droits réservés</span><span>Entreprise française • Données sécurisées</span></div>
+  </div>
+</footer>
+
+<script>
+const navWrap=document.getElementById('nav-wrap');
+const prog=document.getElementById('prog');
+const burger=document.getElementById('burger');
+const mnav=document.getElementById('mnav');
+
+function closeMenu(){mnav?.setAttribute('hidden','');burger?.setAttribute('aria-expanded','false');}
+function toggleMenu(){if(!mnav||!burger)return;const open=!mnav.hasAttribute('hidden');open?closeMenu():(mnav.removeAttribute('hidden'),burger.setAttribute('aria-expanded','true'));}
+if(burger)burger.addEventListener('click',toggleMenu);
+if(mnav)mnav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
+window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMenu();});
+
+window.addEventListener('scroll',()=>{
+  navWrap?.classList.toggle('scrolled',scrollY>18);
+  const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduced){
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const counters=document.querySelectorAll('.counter');
+  const co=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){counters.forEach(c=>{const target=+c.dataset.t;const t0=performance.now();const tick=n=>{const p=Math.min((n-t0)/1100,1);c.textContent=Math.floor(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);});co.disconnect();}},{threshold:.35});
+  const heroStats=document.querySelector('.hero-stats');if(heroStats)co.observe(heroStats);
+}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));document.querySelectorAll('.counter').forEach(c=>c.textContent=c.dataset.t)}
+</script>
+</body>
+</html>
