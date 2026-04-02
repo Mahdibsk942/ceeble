@@ -1,0 +1,204 @@
+/* Responsive enhancements for the provided Ceeble landing page */
+
+/* 1) Avoid accidental horizontal overflow on mobile */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* 2) Make spacing/type more fluid across breakpoints */
+:root {
+  --container-pad: clamp(16px, 4vw, 32px);
+}
+
+.container {
+  padding-inline: var(--container-pad);
+}
+
+.lead,
+.section-intro,
+.two-cols .text-col p {
+  font-size: clamp(15px, 1.4vw, 17px);
+}
+
+/* 3) Header: prevent CTA overflow on very small screens */
+@media (max-width: 640px) {
+  .nav {
+    min-height: 64px;
+    gap: 10px;
+  }
+
+  .nav-shell {
+    gap: 8px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .nav-actions .btn-secondary {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .nav-burger {
+    padding: 10px 12px;
+  }
+}
+
+/* 4) Hero section: improve readability and stacking */
+@media (max-width: 860px) {
+  .hero {
+    overflow: visible;
+  }
+
+  .hero-layout {
+    gap: 24px;
+    padding: 34px 0 48px;
+  }
+
+  .hero-content h1 {
+    letter-spacing: -0.35px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 220px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-content h1 {
+    font-size: clamp(28px, 8.6vw, 36px);
+    line-height: 1.14;
+  }
+
+  .hero-badges {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges li {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 5) Replace rigid stat row with responsive grid */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-item {
+  border-right: 1px solid var(--border);
+}
+
+.stat-item:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 920px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-item:nth-child(odd) {
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-item:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-item,
+  .stat-item:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .stat-item:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* 6) Cards/timeline: prevent cramped content on narrow widths */
+@media (max-width: 700px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .step-card,
+  .audience-card,
+  .value-card,
+  .benefit-card {
+    border-radius: 14px;
+  }
+
+  .timeline {
+    padding-left: 26px;
+  }
+
+  .timeline::before {
+    left: 12px;
+  }
+
+  .timeline li {
+    padding-bottom: 22px;
+    gap: 14px;
+  }
+
+  .tl-dot {
+    left: -30px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+    box-shadow: 0 0 0 3px var(--bg-alt), 0 0 0 5px rgba(242, 134, 34, 0.2);
+  }
+}
+
+/* 7) Form/footer controls on handheld sizes */
+@media (max-width: 560px) {
+  .contact-form {
+    padding: 16px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 16px; /* prevent iOS zoom */
+    border-radius: 12px;
+  }
+
+  .btn-submit {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .footer {
+    padding: 42px 0 76px;
+  }
+
+  .footer-inner {
+    gap: 20px;
+  }
+
+  .trust-badge {
+    width: 100%;
+    justify-content: center;
+  }
+}
