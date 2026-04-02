@@ -246,8 +246,9 @@ textarea{min-height:120px;resize:vertical}
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
 }
 
-.reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
-.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:all .6s ease}
+.js .reveal{opacity:0;transform:translateY(20px)}
+.js .reveal.visible{opacity:1;transform:none}
 .aud{position:relative;overflow:hidden}
 .aud::after{content:'';position:absolute;inset:auto -40% -80% -40%;height:120px;background:radial-gradient(closest-side,rgba(255,122,26,.18),transparent);transition:transform .45s ease;transform:translateY(30px)}
 .aud:hover::after{transform:translateY(0)}
@@ -451,6 +452,7 @@ textarea{min-height:120px;resize:vertical}
 </footer>
 
 <script>
+document.documentElement.classList.add('js');
 const navWrap=document.getElementById('nav-wrap');
 const prog=document.getElementById('prog');
 const burger=document.getElementById('burger');
