@@ -78,6 +78,14 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent-dark),var(
 .hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;mix-blend-mode:multiply}
 .visual-center{position:absolute;inset:auto 32px 30px 32px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--md);animation:cardFloat 6s ease-in-out infinite}
 @keyframes cardFloat{50%{transform:translateY(-8px)}}
+.hero-visual img.is-changing{animation:fadeSwap .55s ease}
+@keyframes fadeSwap{0%{opacity:.05;transform:scale(1.03)}100%{opacity:.22;transform:scale(1)}}
+.impact-line{display:inline-flex;align-items:center;gap:8px;background:rgba(255,122,26,.11);border:1px solid rgba(255,122,26,.28);border-radius:999px;padding:7px 12px;margin:2px 0 12px;font-size:13px;font-weight:800;color:var(--accent-dark);animation:impactPulse 2.2s ease-in-out infinite}
+.impact-line .emoji{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#fff}
+@keyframes impactPulse{50%{transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,122,26,.2)}}
+.float-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;margin-bottom:6px}
+.float-icon{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:rgba(255,122,26,.15);animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
 .hero-stats{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sm)}
 .stat-item{padding:18px;text-align:center;border-right:1px solid var(--line)}
 .stat-item:last-child{border-right:none}
@@ -300,6 +308,7 @@ textarea{min-height:120px;resize:vertical}
       <div class="hero-layout">
         <div class="reveal">
           <span class="eyebrow"><i></i>Valorisation CEE optimisée</span>
+          <p class="impact-line"><span class="emoji">🚀</span><span id="impact-text">Augmentez votre conversion devis grâce à une prime CEE plus lisible.</span></p>
           <h1>Avec Ceeble, les CEE deviennent un <em>levier de performance</em> maîtrisé.</h1>
           <p class="lead">Nous pilotons votre valorisation optimisée et sécurisée : cadrage des opérations, réduction du risque de non-conformité, et accompagnement opérationnel pour limiter les allers-retours.</p>
           <div class="hero-actions">
@@ -309,12 +318,12 @@ textarea{min-height:120px;resize:vertical}
           <ul class="hero-badges"><li>Parcours simple</li><li>Focus conformité</li><li>Support opérationnel</li></ul>
         </div>
         <div class="hero-visual reveal" style="transition-delay:.1s">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1400&auto=format&fit=crop" alt="Équipe d'artisans sur un chantier de rénovation énergétique"/>
+          <img id="hero-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1400&auto=format&fit=crop" alt="Équipe d'artisans sur un chantier de rénovation énergétique"/>
           <div class="visual-center">
-            <strong style="font-size:14px;display:block;margin-bottom:6px">Score conformité Ceeble</strong>
+            <strong class="float-title"><span class="float-icon" id="float-icon">📌</span><span id="float-title">Score conformité Ceeble</span></strong>
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
               <span style="font-size:31px;font-weight:900;color:var(--accent-dark)"><span class="counter" data-t="98">0</span>%</span>
-              <small style="color:var(--muted)">Taux de conformité
+              <small style="color:var(--muted)" id="float-desc">Taux de conformité
                 <br/>constaté sur les dossiers</small>
             </div>
           </div>
@@ -446,6 +455,11 @@ const navWrap=document.getElementById('nav-wrap');
 const prog=document.getElementById('prog');
 const burger=document.getElementById('burger');
 const mnav=document.getElementById('mnav');
+const heroImage=document.getElementById('hero-image');
+const floatTitle=document.getElementById('float-title');
+const floatDesc=document.getElementById('float-desc');
+const floatIcon=document.getElementById('float-icon');
+const impactText=document.getElementById('impact-text');
 
 function closeMenu(){
   mnav?.setAttribute('hidden','');
@@ -466,6 +480,53 @@ function toggleMenu(){
 if(burger)burger.addEventListener('click',toggleMenu);
 if(mnav)mnav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
 window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMenu();});
+
+const heroSlides=[
+  {
+    src:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1400&auto=format&fit=crop',
+    alt:'Équipe d\\'artisans sur un chantier de rénovation énergétique',
+    title:'Score conformité Ceeble',
+    desc:'Taux de conformité\\nconstaté sur les dossiers',
+    icon:'📌',
+    impact:'Accélérez vos signatures avec une proposition CEE claire et crédible.'
+  },
+  {
+    src:'https://images.unsplash.com/photo-1581092160607-ee22731d8f3c?q=80&w=1400&auto=format&fit=crop',
+    alt:'Technicien en intervention sur un équipement énergétique',
+    title:'Pilotage terrain',
+    desc:'Moins d\\'allers-retours\\nplus de dossiers validés',
+    icon:'🛠️',
+    impact:'Transformez vos équipes chantier en machine de conversion opérationnelle.'
+  },
+  {
+    src:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400&auto=format&fit=crop',
+    alt:'Réunion d\\'équipe entreprise pour pilotage de performance',
+    title:'Vision business',
+    desc:'Valorisation optimisée\\npour soutenir la marge',
+    icon:'📈',
+    impact:'Passez d\\'une logique administrative à une logique de croissance rentable.'
+  }
+];
+let currentSlide=0;
+function updateHeroSlide(index){
+  if(!heroImage||!floatTitle||!floatDesc||!floatIcon||!impactText)return;
+  const slide=heroSlides[index];
+  heroImage.classList.remove('is-changing');
+  void heroImage.offsetWidth;
+  heroImage.classList.add('is-changing');
+  heroImage.src=slide.src;
+  heroImage.alt=slide.alt;
+  floatTitle.textContent=slide.title;
+  floatDesc.innerHTML=slide.desc.replace('\\n','<br/>');
+  floatIcon.textContent=slide.icon;
+  impactText.textContent=slide.impact;
+}
+if(heroImage){
+  setInterval(()=>{
+    currentSlide=(currentSlide+1)%heroSlides.length;
+    updateHeroSlide(currentSlide);
+  },4200);
+}
 
 window.addEventListener('scroll',()=>{
   navWrap?.classList.toggle('scrolled',scrollY>18);
