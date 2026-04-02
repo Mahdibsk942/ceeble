@@ -57,6 +57,7 @@ img{max-width:100%;display:block}
 .btn-outline{border-color:rgba(47,41,31,.45);background:transparent}
 .nav-burger{display:none;border:1px solid rgba(47,41,31,.2);background:#fff;border-radius:999px;padding:10px 13px}
 .mnav{display:none;flex-direction:column;gap:8px;padding:0 0 14px}
+.mnav[hidden]{display:none !important}
 .mnav a{background:#fff;border:1px solid var(--line);padding:11px 12px;border-radius:12px;font-weight:700}
 
 .hero{padding:68px 0 86px;position:relative}
@@ -127,10 +128,113 @@ textarea{min-height:120px;resize:vertical}
 .full{grid-column:1/-1}
 .note{font-size:13px;color:var(--muted);margin-top:10px}
 
-.footer{padding:56px 0 32px;background:linear-gradient(180deg,#fff8eb,#fdf1dd);border-top:1px solid rgba(47,41,31,.1)}
-.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px;padding-bottom:24px;border-bottom:1px solid rgba(47,41,31,.1)}
-.footer a{display:block;margin-bottom:8px;color:rgba(47,41,31,.82)}
-.footer-bottom{padding-top:18px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(47,41,31,.6)}
+.footer{
+  position:relative;
+  padding:64px 0 30px;
+  background:
+    radial-gradient(900px 260px at 10% 0%, rgba(242,134,34,.10), transparent 62%),
+    radial-gradient(760px 260px at 90% 0%, rgba(242,134,34,.07), transparent 62%),
+    linear-gradient(180deg, #F8F3EA 0%, #F4EBDD 100%);
+  border-top:1px solid rgba(69,62,45,.08);
+  overflow:hidden;
+}
+.footer::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0));
+  pointer-events:none;
+}
+.footer .container{position:relative;z-index:1}
+.footer-inner{
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr) minmax(0,.9fr);
+  gap:56px;
+  padding:8px 0 34px;
+  border-bottom:1px solid rgba(69,62,45,.10);
+  align-items:start;
+}
+.footer-brand p{
+  font-size:15px;
+  color:rgba(58,51,36,.74);
+  line-height:1.85;
+  max-width:360px;
+}
+.footer-col{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.footer-col h4{
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1.7px;
+  color:rgba(58,51,36,.52);
+  margin-bottom:18px;
+}
+.footer-col a{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  font-size:15px;
+  line-height:1.45;
+  color:rgba(58,51,36,.80);
+  text-decoration:none;
+  margin-bottom:12px;
+  transition:color var(--tr),transform var(--tr),opacity var(--tr);
+}
+.footer-col a:hover{
+  color:var(--accent-dark);
+  transform:translateX(4px);
+}
+.footer-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  padding-top:22px;
+  font-size:13px;
+  color:rgba(58,51,36,.58);
+}
+.footer-badges{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.trust-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:600;
+  color:rgba(58,51,36,.70);
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(69,62,45,.08);
+  border-radius:999px;
+  padding:9px 14px;
+  box-shadow:0 10px 24px rgba(69,62,45,.05);
+  backdrop-filter:blur(8px);
+  transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);
+}
+.trust-badge:hover{
+  transform:translateY(-2px);
+  border-color:rgba(242,134,34,.22);
+  box-shadow:0 12px 28px rgba(242,134,34,.10);
+}
+.trust-badge-flag{gap:10px}
+.flag-fr{
+  width:16px;
+  height:12px;
+  border-radius:2px;
+  display:inline-block;
+  flex:0 0 auto;
+  background:linear-gradient(to right,#0055A4 33.33%,#FFFFFF 33.33%,#FFFFFF 66.66%,#EF4135 66.66%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
+}
 
 .reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -139,14 +243,17 @@ textarea{min-height:120px;resize:vertical}
   .navlinks{display:none}.nav-burger{display:inline-flex}.mnav{display:flex}
   .hero-layout,.two-cols,.contact-layout{grid-template-columns:1fr}
   .hero-visual{min-height:330px}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr;gap:28px;padding-bottom:26px}
 }
 @media(max-width:760px){
   .steps-grid,.audience,.form-grid,.hero-stats{grid-template-columns:1fr}
   .stat-item{border-right:none;border-bottom:1px solid var(--line)}
   .stat-item:last-child{border-bottom:none}
   .hero-actions .btn{width:100%}
-  .footer-grid{grid-template-columns:1fr}
+  .footer-brand p{max-width:none}
+  .footer-col a{width:100%}
+  .footer-bottom{align-items:flex-start}
+  .footer-badges{width:100%}
   input,select,textarea{font-size:16px}
 }
 </style>
@@ -182,23 +289,23 @@ textarea{min-height:120px;resize:vertical}
     <div class="container">
       <div class="hero-layout">
         <div class="reveal">
-          <span class="eyebrow"><i></i>Valorisation CEE nouvelle génération</span>
-          <h1>Avec Ceeble, les CEE deviennent un <em>accélérateur business</em>, pas une contrainte.</h1>
-          <p class="lead">On sécurise votre conformité, on fluidifie vos opérations et on maximise la valeur de chaque dossier. Résultat : plus de marge, plus de sérénité, plus de vitesse.</p>
+          <span class="eyebrow"><i></i>Valorisation CEE optimisée</span>
+          <h1>Avec Ceeble, les CEE deviennent un <em>levier de performance</em> maîtrisé.</h1>
+          <p class="lead">Nous pilotons votre valorisation optimisée et sécurisée : cadrage des opérations, réduction du risque de non-conformité, et accompagnement opérationnel pour limiter les allers-retours.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Être rappelé sous 24h</a>
-            <a class="btn btn-outline" href="#process">Voir le parcours complet</a>
+            <a class="btn btn-primary" href="#contact">Réserver un échange</a>
+            <a class="btn btn-outline" href="#process">Voir comment ça marche</a>
           </div>
-          <ul class="hero-badges"><li>Dossiers pré-audités</li><li>Interlocuteur unique</li><li>Pilotage en continu</li><li>Accompagnement terrain</li></ul>
+          <ul class="hero-badges"><li>Parcours simple</li><li>Focus conformité</li><li>Support opérationnel</li></ul>
         </div>
         <div class="hero-visual reveal" style="transition-delay:.1s">
           <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1200&auto=format&fit=crop" alt="Maison rénovée énergétiquement"/>
           <div class="visual-center">
-            <strong style="font-size:14px;display:block;margin-bottom:6px">CEE Secure Score</strong>
+            <strong style="font-size:14px;display:block;margin-bottom:6px">Score conformité Ceeble</strong>
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
               <span style="font-size:31px;font-weight:900;color:var(--accent-dark)"><span class="counter" data-t="98">0</span>%</span>
-              <small style="color:var(--muted)">Conformité observée
-                <br/>sur les dossiers accompagnés</small>
+              <small style="color:var(--muted)">Taux de conformité
+                <br/>constaté sur les dossiers</small>
             </div>
           </div>
         </div>
@@ -207,14 +314,14 @@ textarea{min-height:120px;resize:vertical}
         <div class="stat-item"><div class="stat-value"><span class="counter" data-t="500">0</span>+</div><div class="stat-label">Dossiers traités</div></div>
         <div class="stat-item"><div class="stat-value">24h</div><div class="stat-label">Délai de réponse</div></div>
         <div class="stat-item"><div class="stat-value"><span class="counter" data-t="3">0</span></div><div class="stat-label">Étapes clés</div></div>
-        <div class="stat-item"><div class="stat-value"><span class="counter" data-t="12">0</span> M€</div><div class="stat-label">Volumes accompagnés</div></div>
+        <div class="stat-item"><div class="stat-value"><span class="counter" data-t="3">0</span></div><div class="stat-label">Étapes simples</div></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="approche">
     <div class="container">
-      <header class="section-head reveal"><span class="section-label">Notre approche</span><h2>Un parcours en 3 temps pour fiabiliser vos dossiers CEE</h2><p class="section-intro">Nous avons redesigné l’expérience pour qu’elle soit lisible, crédible et convaincante, en s’inspirant des meilleurs standards conversion du secteur énergie.</p></header>
+      <header class="section-head reveal"><span class="section-label">Notre approche</span><h2>Un parcours en 3 étapes pour sécuriser vos dossiers</h2><p class="section-intro">Un chemin simple pour cadrer vos opérations, fiabiliser la conformité et accélérer la prise en charge.</p></header>
       <div class="steps-grid">
         <article class="step reveal"><div class="step-num">1</div><h3>Qualification express</h3><p>On valide votre périmètre en 20 minutes : typologies, volumes, contraintes, planning.</p></article>
         <article class="step reveal" style="transition-delay:.1s"><div class="step-num">2</div><h3>Structuration conformité</h3><p>Checklists, collecte documentaire, contrôle de cohérence et plan anti-retour.</p></article>
@@ -294,12 +401,33 @@ textarea{min-height:120px;resize:vertical}
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
-      <div><strong style="font-size:20px">Ceeble</strong><p style="margin-top:8px;color:var(--muted)">Valorisation CEE optimisée pour les acteurs terrain : conformité, rapidité, performance.</p></div>
-      <div><h4 style="margin-bottom:10px">Services</h4><a href="#process">Comment ça marche</a><a href="#clients">Nos clients</a><a href="#contact">Prendre rendez-vous</a></div>
-      <div><h4 style="margin-bottom:10px">Contact</h4><a href="mailto:contact@ceeble.fr">contact@ceeble.fr</a><a href="tel:+33762760029">07 62 76 00 29</a><a href="#faq">FAQ</a></div>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p>Optimisation de la valorisation CEE pour installateurs RGE : suivi administratif, négociation et accompagnement opérationnel.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#process">Comment ça marche</a>
+        <a href="simulateur.html">Simulateur</a>
+        <a href="simulation-create.html">Nouvelle simulation</a>
+        <a href="login.html">Espace partenaire</a>
+      </div>
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="simulations.html">Mes simulations</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="mailto:contact@ceeble.fr">contact@ceeble.fr</a>
+        <a href="tel:+33762760029">07 62 76 00 29</a>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Ceeble — Tous droits réservés</span><span>Entreprise française • Données sécurisées</span></div>
+    <div class="footer-bottom">
+      <span>© 2026 Ceeble — Tous droits réservés</span>
+      <div class="footer-badges">
+        <span class="trust-badge">🔒 Données sécurisées</span>
+        <span class="trust-badge trust-badge-flag"><span class="flag-fr" aria-hidden="true"></span><span>Entreprise française</span></span>
+      </div>
+    </div>
   </div>
 </footer>
 
