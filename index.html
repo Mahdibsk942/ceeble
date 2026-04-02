@@ -524,10 +524,12 @@ function updateHeroSlide(index){
   impactText.textContent=slide.impact;
 }
 if(heroImage){
-  setInterval(()=>{
+  const SLIDE_INTERVAL_MS=5000;
+  const runSlider=()=>{
     currentSlide=(currentSlide+1)%heroSlides.length;
     updateHeroSlide(currentSlide);
-  },4200);
+  };
+  window.setInterval(runSlider,SLIDE_INTERVAL_MS);
 }
 
 window.addEventListener('scroll',()=>{
