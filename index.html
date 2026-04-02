@@ -59,6 +59,8 @@ img{max-width:100%;display:block}
 .mnav{display:none;flex-direction:column;gap:8px;padding:0 0 14px}
 .mnav[hidden]{display:none !important}
 .mnav a{background:#fff;border:1px solid var(--line);padding:11px 12px;border-radius:12px;font-weight:700}
+.mnav:not([hidden]){animation:menuDrop .28s ease}
+@keyframes menuDrop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 
 .hero{padding:68px 0 86px;position:relative}
 .hero-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
@@ -238,9 +240,16 @@ textarea{min-height:120px;resize:vertical}
 
 .reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
 .reveal.visible{opacity:1;transform:none}
+.aud{position:relative;overflow:hidden}
+.aud::after{content:'';position:absolute;inset:auto -40% -80% -40%;height:120px;background:radial-gradient(closest-side,rgba(255,122,26,.18),transparent);transition:transform .45s ease;transform:translateY(30px)}
+.aud:hover::after{transform:translateY(0)}
 
 @media(max-width:980px){
-  .navlinks{display:none}.nav-burger{display:inline-flex}.mnav{display:flex}
+  .navlinks{display:none}
+  .nav-burger{display:inline-flex !important;align-items:center;justify-content:center;z-index:3}
+  .nav-shell .btn-outline{display:none}
+  .nav-shell .btn-primary{padding:10px 12px;font-size:13px}
+  .mnav{display:flex}
   .hero-layout,.two-cols,.contact-layout{grid-template-columns:1fr}
   .hero-visual{min-height:330px}
   .footer-inner{grid-template-columns:1fr;gap:28px;padding-bottom:26px}
@@ -250,6 +259,7 @@ textarea{min-height:120px;resize:vertical}
   .stat-item{border-right:none;border-bottom:1px solid var(--line)}
   .stat-item:last-child{border-bottom:none}
   .hero-actions .btn{width:100%}
+  .nav-shell .btn-primary{display:none}
   .footer-brand p{max-width:none}
   .footer-col a{width:100%}
   .footer-bottom{align-items:flex-start}
@@ -299,7 +309,7 @@ textarea{min-height:120px;resize:vertical}
           <ul class="hero-badges"><li>Parcours simple</li><li>Focus conformité</li><li>Support opérationnel</li></ul>
         </div>
         <div class="hero-visual reveal" style="transition-delay:.1s">
-          <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1200&auto=format&fit=crop" alt="Maison rénovée énergétiquement"/>
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1400&auto=format&fit=crop" alt="Équipe d'artisans sur un chantier de rénovation énergétique"/>
           <div class="visual-center">
             <strong style="font-size:14px;display:block;margin-bottom:6px">Score conformité Ceeble</strong>
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
@@ -437,8 +447,22 @@ const prog=document.getElementById('prog');
 const burger=document.getElementById('burger');
 const mnav=document.getElementById('mnav');
 
-function closeMenu(){mnav?.setAttribute('hidden','');burger?.setAttribute('aria-expanded','false');}
-function toggleMenu(){if(!mnav||!burger)return;const open=!mnav.hasAttribute('hidden');open?closeMenu():(mnav.removeAttribute('hidden'),burger.setAttribute('aria-expanded','true'));}
+function closeMenu(){
+  mnav?.setAttribute('hidden','');
+  burger?.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+function toggleMenu(){
+  if(!mnav||!burger)return;
+  const open=!mnav.hasAttribute('hidden');
+  if(open){
+    closeMenu();
+  }else{
+    mnav.removeAttribute('hidden');
+    burger.setAttribute('aria-expanded','true');
+    if(window.innerWidth<761)document.body.style.overflow='hidden';
+  }
+}
 if(burger)burger.addEventListener('click',toggleMenu);
 if(mnav)mnav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
 window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMenu();});
